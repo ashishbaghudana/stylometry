@@ -1,4 +1,4 @@
-package author.stylometry;
+package test.java.author.stylometry;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
