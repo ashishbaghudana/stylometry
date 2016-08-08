@@ -2,13 +2,13 @@ package main.java.author.stylometry.structure;
 
 public class Word {
 
-	private static String word;
+	private String word;
 	
 	public Word(String word)
 	{
 		this.word=word;
 	}
-	public static int length()
+	public int length()
 	{
 		return word.length();
 		
