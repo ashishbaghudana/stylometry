@@ -25,7 +25,7 @@ public class GutenbergReader {
 	public static void main(String[] arg)
 	{
 
-		String book = parseInput("/home/ashish/workspace/stylometry/books/hamlet.txt");
+		String book = parseInput("C:\\Users\\magulati\\Documents\\hello.txt");
 		Book b= new Book(book, "Leo Tolstoy");
 		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
 		b.preprocess(tokenizer);
