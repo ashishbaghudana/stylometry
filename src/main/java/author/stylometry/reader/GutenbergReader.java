@@ -23,7 +23,7 @@ public class GutenbergReader {
 	
 	public static void main(String[] arg)
 	{
-		String book = parseInput("/home/ashish/workspace/stylometry/books/hamlet.txt");
+		String book = parseInput("C:\\GitRepo\\FindAnagrams\\sowpods.txt");
 		Book b= new Book(book, "Leo Tolstoy");
 		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
 		b.preprocess(tokenizer);
@@ -33,7 +33,7 @@ public class GutenbergReader {
 		System.out.println("Average Words per Paragraph: " + b.avgWordsPerPara());
 		System.out.println("Average Letter per Paragraph: " + b.avgLettersPerPara());
 		System.out.println("Average Sentences per Paragraph: " + b.avgSentencesPerPara());
-		System.out.println("Top 10 words used: " + b.wordFreqTopN(50));
+		System.out.println("Top 10 words used: " + b.wordFreqTopN(10));
 	}
 
 }
