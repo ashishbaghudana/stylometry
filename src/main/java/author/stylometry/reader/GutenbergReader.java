@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import main.java.author.stylometry.preprocess.Tokenizer;
 import main.java.author.stylometry.structure.Book;
+import main.java.author.stylometry.structure.Sentence;
 
 public class GutenbergReader {
 
@@ -29,9 +30,11 @@ public class GutenbergReader {
 	{
 		String book = parseInput();
 		Book b= new Book(book, "Manav");
+		Sentence s= new Sentence("hdkjklasjdldajk");
 		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
 		b.preprocess(tokenizer);
 		System.out.println(b.punctuationDensity());
-		System.out.println(b.avgWordsPerSentence());
+		System.out.println(b.avgLettersPerSentence());
+		System.out.println(b.topNwords());
 	}
 }
