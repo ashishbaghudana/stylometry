@@ -67,7 +67,7 @@ public class Sentence {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Word w : words) {
 			if(!w.isPunctuation())
-				topN.add(w.toString());
+				topN.add(w.toString().toLowerCase());
 		}
 		return topN;
 	}
