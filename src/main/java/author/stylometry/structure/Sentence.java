@@ -46,7 +46,7 @@ public class Sentence {
 	public String toString() {
 		String s = "";
 		for (Word w : words) {
-			s += w.toString();
+			s += w.toString() + " ";
 		}
 		return s;
 	}

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import main.java.author.stylometry.preprocess.Tokenizer;
 import main.java.author.stylometry.structure.Book;
 
 public class GutenbergReader {
@@ -11,27 +12,26 @@ public class GutenbergReader {
 	public static String parseInput()
 	{
 		String file = "";
-		try (BufferedReader br = new BufferedReader(new FileReader("C:\\GitRepo\\FindAnagrams\\sowpods.txt"))){
-			String currentLine = br.readLine();
-				String str = "";
-					while((str=br.readLine())!=null)
-					{
-						file += str;
-					}				
+		try (BufferedReader br = new BufferedReader(new FileReader("/home/ashish/workspace/stylometry/sample.txt"))) {
+			String str;
+			while((str=br.readLine())!=null)
+			{
+				file += str + "\n";
+			}				
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return file;
 	}
 	
 	public static void main(String[] arg)
 	{
-		Book b= new Book(parseInput(),"Manav");
-		
-		
-		
+		String book = parseInput();
+		Book b= new Book(book, "Manav");
+		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
+		b.preprocess(tokenizer);
+		System.out.println(b.punctuationDensity());
+		System.out.println(b.avgWordsPerSentence());
 	}
-
 }

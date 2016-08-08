@@ -39,7 +39,7 @@ public class Paragraph {
 	public String toString() {
 		String p = "";
 		for (Sentence s : sentences) {
-			p += s.toString();
+			p += s.toString() + " ";
 		}
 		return p;
 	}

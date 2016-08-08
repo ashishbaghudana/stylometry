@@ -21,39 +21,23 @@ public class Book {
 	public void add(Paragraph paragraph) {
 		this.paragraphs.add(paragraph);
 	}
+	
+	public ArrayList<Paragraph> getParagraphs() {
+		return this.paragraphs;
+	}
 
 	public String toString() {
 		return book;
 	}
 
-	public int punctuations() {
-		int count = 0;
-		for (Paragraph p : paragraphs) {
-			count += p.punctuations();
-		}
-		return count;
-	}
-
 	public int length() {
 		return paragraphs.size();
 	}
-
-	public int numSentences() {
-		int count = 0;
-		for (Paragraph p : paragraphs) {
-			count += p.length();
-		}
-		return count;
-	}
-
+	
 	public float punctuationDensity() {
 		return (float) this.punctuations() / this.numSentences();
 	}
-
-	public int numParagraphs() {
-		return paragraphs.size();
-	}
-
+	
 	public String getAuthor() {
 		return author;
 	}
@@ -65,16 +49,48 @@ public class Book {
 			this.add(p);
 		}
 	}
-
-	public int sentences() {
-		int sentenSize = 0;
-		for (Paragraph p : paragraphs) {
-			sentenSize += p.length();
-		}
-		return sentenSize;
+	
+	public float avgWordsPerSentence() {
+		return (float) countWords() / numSentences();
 	}
 
-	public int countWords() {
+	public float avgLettersPerSentence() {
+		return (float) countLetters() / numSentences();
+	}
+
+	public float avgWordsPerPara() {
+		return (float) countWords() / numParagraphs();
+	}
+
+	public float avgLettersPerPara() {
+		return (float) countLetters() / numParagraphs();
+	}
+
+	public float avgSentencesPerPara() {
+		return (float) numSentences() / numParagraphs();
+	}
+	
+	private int punctuations() {
+		int count = 0;
+		for (Paragraph p : paragraphs) {
+			count += p.punctuations();
+		}
+		return count;
+	}
+
+	private int numSentences() {
+		int count = 0;
+		for (Paragraph p : paragraphs) {
+			count += p.length();
+		}
+		return count;
+	}
+
+	private int numParagraphs() {
+		return paragraphs.size();
+	}
+
+	private int countWords() {
 		int wordsPerBook = 0;
 		for (Paragraph p : paragraphs) {
 			wordsPerBook += p.countWords();
@@ -82,32 +98,12 @@ public class Book {
 		return wordsPerBook;
 	}
 
-	public int countLetters() {
+	private int countLetters() {
 		int lettersPerBook = 0;
 		for (Paragraph p : paragraphs) {
 			lettersPerBook += p.countLetters();
 		}
 		return lettersPerBook;
-	}
-
-	public int wordsPerSentence() {
-		return countWords() / numSentences();
-	}
-
-	public int lettersPerSentence() {
-		return countLetters() / numSentences();
-	}
-
-	public int wordsPerPara() {
-		return countWords() / numParagraphs();
-	}
-
-	public int lettersPerPara() {
-		return countLetters() / numParagraphs();
-	}
-
-	public int sentencesPerPara() {
-		return numSentences() / numParagraphs();
 	}
 
 	public ArrayList<String> topNwords() {
@@ -159,6 +155,7 @@ public class Book {
 		return topN;
 	}
 }
+
 class ValueComparator implements Comparator<String> {
     HashMap<String, Integer> base;
 
