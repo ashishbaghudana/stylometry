@@ -32,6 +32,6 @@ public class GutenbergReader {
 		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
 		b.preprocess(tokenizer);
 		System.out.println(b.punctuationDensity());
-		System.out.println(b.wordsPerSentence());
+		System.out.println(b.avgWordsPerSentence());
 	}
 }

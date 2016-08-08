@@ -101,7 +101,7 @@ public class Book {
 	private int countLetters() {
 		int lettersPerBook = 0;
 		for (Paragraph p : paragraphs) {
-			lettersPerBook += p.length();
+			lettersPerBook += p.countLetters();
 		}
 		return lettersPerBook;
 	}
@@ -109,7 +109,10 @@ public class Book {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Paragraph p : paragraphs) {
-			topN.add(p.topNwords().toString());
+			for(String a : topNwords())
+			{
+			topN.add(a);
+			}
 		}
 		return topN;
 	}
@@ -143,7 +146,7 @@ public class Book {
 		//Set<String> keys = sortedWordFreq().keySet();
 		for (Entry<String, Integer> entry : top.entrySet())
 	    {
-	        if(i<10)
+	        if(i<n)
 	        	{
 	        	topN.add(entry.getKey());
 	        	i++;
