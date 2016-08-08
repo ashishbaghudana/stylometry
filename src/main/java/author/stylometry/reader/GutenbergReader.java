@@ -29,7 +29,7 @@ public class GutenbergReader {
 	public static void main(String[] arg)
 	{
 		Book b= new Book(parseInput(),"Manav");
-		b.preprocess();
+		
 		
 		
 	}
