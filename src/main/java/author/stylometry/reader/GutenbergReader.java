@@ -31,7 +31,12 @@ public class GutenbergReader {
 		Book b= new Book(book, "Manav");
 		Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
 		b.preprocess(tokenizer);
-		System.out.println(b.punctuationDensity());
-		System.out.println(b.avgWordsPerSentence());
+		System.out.println("Punctuation Density: " + b.punctuationDensity());
+		System.out.println("Average Words per Sentence: " + b.avgWordsPerSentence());
+		System.out.println("Average Letters per Sentence: " + b.avgLettersPerSentence());
+		System.out.println("Average Words per Paragraph: " + b.avgWordsPerPara());
+		System.out.println("Average Letter per Paragraph: " + b.avgLettersPerPara());
+		System.out.println("Average Sentences per Paragraph: " + b.avgSentencesPerPara());
+		System.out.println("Top 10 words used: " + b.wordFreqTopN(10));
 	}
 }
