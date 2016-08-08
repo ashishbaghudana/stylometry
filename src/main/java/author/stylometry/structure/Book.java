@@ -1,10 +1,13 @@
 package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Book {
 	private String book;
 	private ArrayList<Paragraph> paragraphs;
+	private Map<String,Integer> freq= new HashMap<>();
 	
 	public Book(String book) {
 		this.book = book;
