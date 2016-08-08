@@ -10,7 +10,6 @@ import java.util.TreeMap;
 
 public class Book {
 	private String book;
-	private String author;
 	private ArrayList<Paragraph> paragraphs;
 
 	public Book(String book) {
