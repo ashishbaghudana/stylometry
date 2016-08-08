@@ -5,15 +5,16 @@ import java.util.ArrayList;
 public class Sentence {
 	String sentence;
 	ArrayList<Word> words;
+	Tokenizer tokenizer;
 	
 	public Sentence(String sentence) {
 		this.sentence = sentence;
 		this.words = new ArrayList<Word>();
+		this.tokenizer = new Tokenizer();
 	}
 	
-	public void add(String word) {
-		Word w = new Word(word);
-		words.add(w);
+	public void add(Word word) {
+		words.add(word);
 	}
 	
 	public int punctuations() {
@@ -32,6 +33,13 @@ public class Sentence {
 	
 	public ArrayList<Word> getWords() {
 		return words;
+	}
+	
+	public void preprocess() {
+		for (String word : tokenizer.words(sentence)) {
+			Word w = new Word(word);
+			this.add(w);
+		}
 	}
 	
 	public String toString() {

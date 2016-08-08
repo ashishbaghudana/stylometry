@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class Book {
 	private String book;
+	private String author;
 	private ArrayList<Paragraph> paragraphs;
+	private Tokenizer tokenizer;
 	
-	public Book(String book) {
+	public Book(String book, String author) {
 		this.book = book;
+		this.author = author;
+		this.paragraphs = new ArrayList<Paragraph>();
+		this.tokenizer = new Tokenizer();
 	}
 	
 	public void add(Paragraph paragraph) {
@@ -40,5 +45,17 @@ public class Book {
 	
 	public float punctuationDensity() {
 		return (float) this.punctuations() / this.numSentences();
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	
+	public void preprocess() {
+		for (String paragraph : tokenizer.paragraphs(book)) {
+			Paragraph p = new Paragraph(paragraph);
+			p.preprocess();
+			this.add(p);
+		}
 	}
 }
