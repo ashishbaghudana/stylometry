@@ -1,18 +1,17 @@
 package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
+import main.java.author.stylometry.preprocess.Tokenizer;
 
 public class Book {
 	private String book;
 	private String author;
 	private ArrayList<Paragraph> paragraphs;
-	private Tokenizer tokenizer;
 	
 	public Book(String book, String author) {
 		this.book = book;
 		this.author = author;
 		this.paragraphs = new ArrayList<Paragraph>();
-		this.tokenizer = new Tokenizer();
 	}
 	
 	public void add(Paragraph paragraph) {
@@ -51,10 +50,10 @@ public class Book {
 		return author;
 	}
 	
-	public void preprocess() {
+	public void preprocess(Tokenizer tokenizer) {
 		for (String paragraph : tokenizer.paragraphs(book)) {
 			Paragraph p = new Paragraph(paragraph);
-			p.preprocess();
+			p.preprocess(tokenizer);
 			this.add(p);
 		}
 	}

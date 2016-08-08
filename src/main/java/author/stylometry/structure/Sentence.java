@@ -2,6 +2,8 @@ package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
 
+import main.java.author.stylometry.preprocess.Tokenizer;
+
 public class Sentence {
 	String sentence;
 	ArrayList<Word> words;
@@ -10,7 +12,6 @@ public class Sentence {
 	public Sentence(String sentence) {
 		this.sentence = sentence;
 		this.words = new ArrayList<Word>();
-		this.tokenizer = new Tokenizer();
 	}
 	
 	public void add(Word word) {
@@ -35,7 +36,7 @@ public class Sentence {
 		return words;
 	}
 	
-	public void preprocess() {
+	public void preprocess(Tokenizer tokenizer) {
 		for (String word : tokenizer.words(sentence)) {
 			Word w = new Word(word);
 			this.add(w);

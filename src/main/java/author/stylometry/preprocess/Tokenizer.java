@@ -35,7 +35,7 @@ public class Tokenizer {
 				try {
 					modelIn.close();
 				} catch (IOException e) {
-					
+					e.printStackTrace();
 				}
 			}
 		}

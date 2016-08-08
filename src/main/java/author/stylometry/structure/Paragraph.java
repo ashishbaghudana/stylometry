@@ -1,16 +1,15 @@
 package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
+import main.java.author.stylometry.preprocess.Tokenizer;
 
 public class Paragraph {
 	String paragraph;
 	ArrayList<Sentence> sentences;
-	Tokenizer tokenizer = new Tokenizer();
 	
 	public Paragraph(String paragraph) {
 		this.paragraph = paragraph;
 		this.sentences = new ArrayList<Sentence>();
-		this.tokenizer = new Tokenizer();
 	}
 	
 	public void add(Sentence sentence) {
@@ -29,10 +28,10 @@ public class Paragraph {
 		return sentences.size();
 	}
 	
-	public void preprocess() {
+	public void preprocess(Tokenizer tokenizer) {
 		for (String sent : tokenizer.sentences(paragraph)) {
 			Sentence s = new Sentence(sent);
-			s.preprocess();
+			s.preprocess(tokenizer);
 			this.add(s);
 		}
 	}
