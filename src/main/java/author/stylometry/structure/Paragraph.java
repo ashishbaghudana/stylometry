@@ -79,4 +79,15 @@ public class Paragraph {
 		}
 		return topN;
 	}
+	public ArrayList<Character> allLetters() {
+		ArrayList<Character> letters = new ArrayList<Character>();
+		for (Sentence s : sentences) {
+			for( Character c:s.allLetters())
+			{
+				letters.add(c);
+			}
+
+		}
+		return letters;
+	}
 }
