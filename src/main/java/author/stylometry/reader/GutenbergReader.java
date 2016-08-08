@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import main.java.author.stylometry.structure.Book;
+
 public class GutenbergReader {
 
 	public static String parseInput()
@@ -22,6 +24,13 @@ public class GutenbergReader {
 		}
 		
 		return file;
+	}
+	
+	public static void main(String[] arg)
+	{
+		Book b= new Book(parseInput(),"Manav");
+		b.preprocess();
+		
 	}
 
 }
