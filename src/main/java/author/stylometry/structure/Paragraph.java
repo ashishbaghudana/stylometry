@@ -74,7 +74,7 @@ public class Paragraph {
 		for (Sentence s : sentences) {
 			for(String a : s.topNwords())
 			{
-			topN.add(a);
+				topN.add(a);
 			}
 		}
 		return topN;
