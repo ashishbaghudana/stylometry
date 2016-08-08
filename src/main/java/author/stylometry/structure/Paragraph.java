@@ -72,7 +72,10 @@ public class Paragraph {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Sentence s : sentences) {
-			topN.add(s.topNwords().toString());
+			for(String a : topNwords())
+			{
+			topN.add(a);
+			}
 		}
 		return topN;
 	}
