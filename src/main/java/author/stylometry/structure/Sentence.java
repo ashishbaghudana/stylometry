@@ -68,6 +68,8 @@ public class Sentence {
 		for (Word w : words) {
 			if(!w.isPunctuation())
 			topN.add(w.toString());
+				topN.add(w.toString());
+
 		}
 		return topN;
 	}

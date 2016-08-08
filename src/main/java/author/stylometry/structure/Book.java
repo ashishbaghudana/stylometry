@@ -109,9 +109,9 @@ public class Book {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Paragraph p : paragraphs) {
-			for(String a : topNwords())
+			for(String a : p.topNwords())
 			{
-			topN.add(a);
+				topN.add(a);
 			}
 		}
 		return topN;
@@ -127,7 +127,7 @@ public class Book {
 				top.put(s, 1);
 			}
 		}
-	return top;
+		return top;
 	}
 	
 	public TreeMap<String, Integer> sortedWordFreq()
@@ -135,13 +135,14 @@ public class Book {
 		HashMap<String, Integer> map= wordFreq();
 		ValueComparator bvc = new ValueComparator(map);
         TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+        sorted_map.putAll(map);
         return sorted_map;
 	}
 	
 	public ArrayList<String> wordFreqTopN(int n) 
 	{
-		ArrayList<String> topN= new ArrayList<String>();
-		Map<String,Integer> top= sortedWordFreq();
+		Map<String,Integer> top = sortedWordFreq();
+		ArrayList<String> topN = new ArrayList<String>();
 		int i=0;
 		//Set<String> keys = sortedWordFreq().keySet();
 		for (Entry<String, Integer> entry : top.entrySet())
