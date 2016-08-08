@@ -8,6 +8,7 @@ public class Sentence {
 	
 	public Sentence(String sentence) {
 		this.sentence = sentence;
+		this.words = new ArrayList<Word>();
 	}
 	
 	public void add(String word) {
@@ -27,6 +28,10 @@ public class Sentence {
 	
 	public int length() {
 		return words.size();
+	}
+	
+	public ArrayList<Word> getWords() {
+		return words;
 	}
 	
 	public String toString() {
