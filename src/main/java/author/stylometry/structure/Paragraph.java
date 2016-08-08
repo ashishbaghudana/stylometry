@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Paragraph {
 	String paragraph;
-	ArrayList<Sentence> sentences;
+	ArrayList<Sentence> sentences ;
 	
 	public Paragraph(String paragraph) {
 		this.paragraph = paragraph;
+		this.sentences = new ArrayList<Sentence>();
 	}
 	
 	public void add(String sentence) {
