@@ -1,4 +1,4 @@
-package author.stylometry;
+package main.java.author.stylometry;
 
 /**
  * Hello world!
