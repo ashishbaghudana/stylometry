@@ -12,9 +12,8 @@ public class Book {
 	private String book;
 	private String author;
 	private ArrayList<Paragraph> paragraphs;
-	public Book(String book, String author) {
+	public Book(String book) {
 		this.book = book;
-		this.author = author;
 		this.paragraphs = new ArrayList<Paragraph>();
 	}
 
@@ -36,10 +35,6 @@ public class Book {
 	
 	public float punctuationDensity() {
 		return (float) this.punctuations() / this.numSentences();
-	}
-	
-	public String getAuthor() {
-		return author;
 	}
 	
 	public void preprocess(Tokenizer tokenizer) {
@@ -106,7 +101,7 @@ public class Book {
 		return lettersPerBook;
 	}
 
-	public ArrayList<String> topNwords() {
+	public ArrayList<String> allWords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Paragraph p : paragraphs) {
 			for(String a : p.topNwords())
@@ -117,41 +112,39 @@ public class Book {
 		return topN;
 	}
 
-	public HashMap<String, Integer> wordFreq() {
-		ArrayList<String> temp = topNwords();
-		HashMap<String, Integer> top = new HashMap<String, Integer>();
+	public HashMap<String, Integer> wordFrequency() {
+		ArrayList<String> temp = allWords();
+		HashMap<String, Integer> frequency = new HashMap<String, Integer>();
 		for (String s : temp) {
-			if (top.containsKey(s)) {
-				top.put(s, top.get(s) + 1);
+			if (frequency.containsKey(s)) {
+				frequency.put(s, frequency.get(s) + 1);
 			} else {
-				top.put(s, 1);
+				frequency.put(s, 1);
 			}
 		}
-		return top;
+		return frequency;
 	}
 	
-	public TreeMap<String, Integer> sortedWordFreq()
+	public TreeMap<String, Integer> sortedWordFrequency()
 	{
-		HashMap<String, Integer> map= wordFreq();
+		HashMap<String, Integer> map = wordFrequency();
 		ValueComparator bvc = new ValueComparator(map);
-        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-        sorted_map.putAll(map);
-        return sorted_map;
+        TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(bvc);
+        sorted.putAll(map);
+        return sorted;
 	}
 	
-	public ArrayList<String> wordFreqTopN(int n) 
+	public ArrayList<String> topNWords(int n) 
 	{
-		Map<String,Integer> top = sortedWordFreq();
+		Map<String,Integer> top = sortedWordFrequency();
 		ArrayList<String> topN = new ArrayList<String>();
 		int i=0;
-		//Set<String> keys = sortedWordFreq().keySet();
 		for (Entry<String, Integer> entry : top.entrySet())
 	    {
-	        if(i<n)
-	        	{
+	        if(i<n) {
 	        	topN.add(entry.getKey());
 	        	i++;
-	        	}
+	        }
 	    }
 		return topN;
 	}
