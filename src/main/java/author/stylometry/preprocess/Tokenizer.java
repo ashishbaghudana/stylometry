@@ -60,7 +60,7 @@ public class Tokenizer {
 	}
 	
 	public String[] paragraphs(String text) {
-		return text.split("\n\n");
+		return text.split("\\n\\n");
 	}
 	
 	public String[] sentences(String text) {
