@@ -64,7 +64,7 @@ public class Paragraph {
 		int lettersPerParagraphs = 0;
 		for (Sentence s: sentences)
 		{
-			lettersPerParagraphs += s.length();
+			lettersPerParagraphs += s.countLetters();
 		}
 		return lettersPerParagraphs;
 	}

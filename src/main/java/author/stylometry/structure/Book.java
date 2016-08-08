@@ -85,7 +85,7 @@ public class Book {
 	public int countLetters() {
 		int lettersPerBook = 0;
 		for (Paragraph p : paragraphs) {
-			lettersPerBook += p.length();
+			lettersPerBook += p.countLetters();
 		}
 		return lettersPerBook;
 	}
