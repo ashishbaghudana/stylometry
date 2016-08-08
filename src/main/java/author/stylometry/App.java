@@ -24,7 +24,7 @@ public class App
         shakespeare.preprocess(tokenizer);
         shakespeare.calculateMetrics();
         
-        Collection somerset = new Collection("Somerset");
+        Collection somerset = new Collection("Maugham");
         somerset.add(new Book(reader.parseInput("books/themagician.txt")));
         somerset.add(new Book(reader.parseInput("books/ofhumanbondage.txt")));
         somerset.add(new Book(reader.parseInput("books/moonandsixpence.txt")));
@@ -33,7 +33,7 @@ public class App
         somerset.calculateMetrics();
         
         Collection unknown = new Collection("unknown");
-        unknown.add(new Book(reader.parseInput("books/ofhumanbondage.txt")));
+        unknown.add(new Book(reader.parseInput("books/othello.txt")));
         
         unknown.preprocess(tokenizer);
         unknown.calculateMetrics();
