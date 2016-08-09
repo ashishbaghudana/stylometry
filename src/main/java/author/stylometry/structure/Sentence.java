@@ -76,7 +76,7 @@ public class Sentence {
 		
 		for (Word w : words) {
 			System.out.println(w.allLetters());
-			for( Character c:w.allLetters())
+			for( Character c : w.allLetters())
 			{	System.out.println(c);
 			
 				letters.add(c);

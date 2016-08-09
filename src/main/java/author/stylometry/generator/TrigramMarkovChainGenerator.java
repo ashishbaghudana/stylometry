@@ -6,7 +6,7 @@ import main.java.author.stylometry.preprocess.Tokenizer;
 import main.java.author.stylometry.reader.GutenbergReader;
 import main.java.author.stylometry.structure.Book;
 
-public class MarkovChainGenerator implements TextGenerator {
+public class TrigramMarkovChainGenerator implements TextGenerator {
 
 	public String generate(Book book, int n) {
 		HashMap<String, HashMap<String, Integer>>
@@ -15,6 +15,8 @@ public class MarkovChainGenerator implements TextGenerator {
 				generateStartingWords(nextWordFrequencies);
 		RandomSelector rs = new RandomSelector(startingWords);
 		String s = "";
+		String start = rs.getRandom();
+		rs = new RandomSelector(nextWordFrequencies.get(start));
 		String nextWord = rs.getRandom();
 		int count = 0;
 		while (count < n) {
