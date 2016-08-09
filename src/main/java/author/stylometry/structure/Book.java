@@ -214,8 +214,6 @@ public class Book {
 		return frequency;
 	}
 
-
-
 	public TreeMap<Character, Integer> sortedLetterFrequency() {
 		HashMap<Character, Integer> map = letterFrequency();
 		ValueComparatorchar bvc = new ValueComparatorchar(map);

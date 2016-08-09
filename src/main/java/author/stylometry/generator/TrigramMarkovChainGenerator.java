@@ -11,11 +11,14 @@ public class TrigramMarkovChainGenerator implements TextGenerator {
 	public String generate(Book book, int n) {
 		HashMap<String, HashMap<String, Integer>>
 			nextWordFrequencies = book.bigram();
+		HashMap<String, HashMap<String, Integer>>
+			wordAfterFrequencies = book.trigram();
 		HashMap<String, Integer> startingWords =
 				generateStartingWords(nextWordFrequencies);
 		RandomSelector rs = new RandomSelector(startingWords);
 		String s = "";
 		String start = rs.getRandom();
+		s += start + " ";
 		rs = new RandomSelector(nextWordFrequencies.get(start));
 		String nextWord = rs.getRandom();
 		int count = 0;
@@ -26,10 +29,18 @@ public class TrigramMarkovChainGenerator implements TextGenerator {
 				count++;
 				s += "\n";
 				rs = new RandomSelector(startingWords);
+				start = rs.getRandom();
+				s += start + " ";
+				rs = new RandomSelector(nextWordFrequencies.get(start));
 				nextWord = rs.getRandom();
 			} else {
-				rs = new RandomSelector(nextWordFrequencies.get(
-						nextWord));
+				HashMap<String, Integer>
+					newVocabulary =
+					new HashMap<String, Integer>();
+				newVocabulary.putAll(nextWordFrequencies.get(nextWord));
+				newVocabulary.putAll(wordAfterFrequencies.get(start));
+				rs = new RandomSelector(newVocabulary);
+				start = nextWord;
 				nextWord = rs.getRandom();
 			}
 		}
@@ -69,9 +80,9 @@ public class TrigramMarkovChainGenerator implements TextGenerator {
 	public static void main(final String[] args) {
 		GutenbergReader reader = new GutenbergReader();
     	Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
-        Book b = new Book(reader.parseInput("books/romeojuliet.txt"));
+        Book b = new Book(reader.parseInput("books/ofhumanbondage.txt"));
         b.preprocess(tokenizer);
-        MarkovChainGenerator mcg = new MarkovChainGenerator();
+        TrigramMarkovChainGenerator mcg = new TrigramMarkovChainGenerator();
         System.out.println(mcg.generate(b, 20));
 	}
 }
