@@ -256,6 +256,28 @@ public class Book {
 
 		return map;
 	}
+
+
+public HashMap<String, HashMap<String, Integer>> trigram() {
+	HashMap<String, HashMap<String, Integer>> map = new HashMap<String, HashMap<String, Integer>>();
+	ArrayList<String> words = allWords();
+	for (int i = 0; i < words.size() - 2; i++) {
+		String s = words.get(i);
+		HashMap<String, Integer> tempSet = new HashMap<>();
+		if (map.containsKey(s)) {
+			tempSet = map.get(s);
+		}
+		if (tempSet.containsKey(words.get(i + 2)))
+			tempSet.put(words.get(i+2), tempSet.get(words.get(i+2)) + 1);
+		else
+			tempSet.put(words.get(i + 2), 1);
+		map.put(s, tempSet);
+	}
+
+	return map;
+}
+
+
 }
 
 class ValueComparator implements Comparator<String> {
