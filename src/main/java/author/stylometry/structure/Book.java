@@ -17,12 +17,10 @@ public class Book {
 	private String book;
 	private ArrayList<Paragraph> paragraphs;
 
-<<<<<<< HEAD
+
 	public Book(String book, String author) {}
 
 
-=======
->>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
 	public Book(String book) {
 
 		this.book = book;
@@ -49,16 +47,12 @@ public class Book {
 		return (float) this.punctuations() / this.numSentences();
 	}
 
-<<<<<<< HEAD
+//
+//	public String getAuthor() {
+//		return author;
+//	}
 
-	public String getAuthor() {
-		return author;
-	}
 
-
-	
-=======
->>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
 	public void preprocess(Tokenizer tokenizer) {
 		for (String paragraph : tokenizer.paragraphs(book)) {
 			Paragraph p = new Paragraph(paragraph);
@@ -157,7 +151,7 @@ public class Book {
 	public ArrayList<String> topNWords(int n) {
 		Map<String, Integer> top = sortedWordFrequency();
 		ArrayList<String> topN = new ArrayList<String>();
-<<<<<<< HEAD
+
 		int i=0;
 		for (Entry<String, Integer> entry : top.entrySet())
 	    {
@@ -170,31 +164,31 @@ public class Book {
 		return topN;
 	}
 	
-	public HashMap<String,ArrayList<String>> bigram()
-	{
-		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
-		ArrayList<String> temp = allWords();		
-		for (int i=0;i<temp.size()-1;i++) {
-			String s = temp.get(i);
-			ArrayList<String> tempSet = new ArrayList<>();
-			//HashMap<String,Integer> tempSet2 = new HashMap<>();
-			if (map.containsKey(s)) {				
-				tempSet = map.get(s);
-			} 
-			tempSet.add(temp.get(i+1));
-	        map.put(s,tempSet);
-		}		
-=======
-		int i = 0;
-		for (Entry<String, Integer> entry : top.entrySet()) {
-			if (i < n) {
-				topN.add(entry.getKey());
-				i++;
-			}
-		}
-
-		return topN;
-	}
+//	public HashMap<String,ArrayList<String>> bigram()
+//	{
+//		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+//		ArrayList<String> temp = allWords();		
+//		for (int i=0;i<temp.size()-1;i++) {
+//			String s = temp.get(i);
+//			ArrayList<String> tempSet = new ArrayList<>();
+//			//HashMap<String,Integer> tempSet2 = new HashMap<>();
+//			if (map.containsKey(s)) {				
+//				tempSet = map.get(s);
+//			} 
+//			tempSet.add(temp.get(i+1));
+//	        map.put(s,tempSet);
+//		}		
+//
+//		int i = 0;
+//		for (Entry<String, Integer> entry : top.entrySet()) {
+//			if (i < n) {
+//				topN.add(entry.getKey());
+//				i++;
+//			}
+//		}
+//
+//		return topN;
+//	}
 
 	public ArrayList<Character> allLetters() {
 		ArrayList<Character> letters = new ArrayList<Character>();
@@ -259,7 +253,7 @@ public class Book {
 				tempSet.put(words.get(i + 1), 1);
 			map.put(s, tempSet);
 		}
->>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
+
 		return map;
 	}
 }
