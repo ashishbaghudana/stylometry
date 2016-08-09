@@ -2,7 +2,9 @@ package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import main.java.author.stylometry.preprocess.Tokenizer;
 import java.util.Comparator;
@@ -138,12 +140,6 @@ public class Book {
 		}
 		return frequency;
 	}
-
-
-	
-
-	
-
 	
 	public TreeMap<String, Integer> sortedWordFrequency()
 	{
@@ -168,6 +164,23 @@ public class Book {
 	    }
 
 		return topN;
+	}
+	
+	public HashMap<String,ArrayList<String>> bigram()
+	{
+		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+		ArrayList<String> temp = allWords();		
+		for (int i=0;i<temp.size()-1;i++) {
+			String s = temp.get(i);
+			ArrayList<String> tempSet = new ArrayList<>();
+			//HashMap<String,Integer> tempSet2 = new HashMap<>();
+			if (map.containsKey(s)) {				
+				tempSet = map.get(s);
+			} 
+			tempSet.add(temp.get(i+1));
+	        map.put(s,tempSet);
+		}		
+		return map;
 	}
 }
 
