@@ -9,12 +9,13 @@ public class RandomFrequencyGenerator implements TextGenerator {
 		int count = 0;
 		String s = "";
 		RandomSelector rs = new RandomSelector(book.wordFrequency());
-		while (count < 20) {
+		while (count < n) {
 			String word = rs.getRandom();
+			s += word + " ";
 			if (word.equals(".") || word.equals("?") || word.equals("!")) {
 				count++;
+				s += "\n";
 			}
-			s += word + " ";
 		}
 		return s;
 	}

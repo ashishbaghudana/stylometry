@@ -147,6 +147,24 @@ public class Book {
 	    }
 		return topN;
 	}
+
+	public HashMap<String, HashMap<String, Integer>> bigram() {
+		HashMap<String, HashMap<String, Integer>> map = new HashMap<String, HashMap<String, Integer>>();
+		ArrayList<String> words = allWords();
+		for (int i = 0; i < words.size() - 1; i++) {
+			String s = words.get(i);
+			HashMap<String, Integer> tempSet = new HashMap<>();
+			if (map.containsKey(s)) {
+				tempSet = map.get(s);
+			}
+			if (tempSet.containsKey(words.get(i + 1)))
+				tempSet.put(words.get(i+1), tempSet.get(words.get(i+1)) + 1);
+			else
+				tempSet.put(words.get(i + 1), 1);
+			map.put(s, tempSet);
+		}
+		return map;
+	}
 }
 
 class ValueComparator implements Comparator<String> {

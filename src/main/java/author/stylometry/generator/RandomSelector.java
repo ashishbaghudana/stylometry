@@ -37,14 +37,5 @@ public class RandomSelector {
              i++;
         }
         return words.get(Math.max(0,i-1));
-    }
-    
-    public static void main(String[] args) {
-    	GutenbergReader reader = new GutenbergReader();
-    	Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
-        Book b = new Book(reader.parseInput("books/romeojuliet.txt"));
-        b.preprocess(tokenizer);
-        HashMap<String, Integer> frequencies = b.wordFrequency();
-        RandomSelector r = new RandomSelector(frequencies);
-    }
+    }    
 }
