@@ -1,6 +1,11 @@
 package main.java.author.stylometry.structure;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import main.java.author.stylometry.preprocess.Tokenizer;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,7 +17,12 @@ public class Book {
 	private String book;
 	private ArrayList<Paragraph> paragraphs;
 
+
+	public Book(String book, String author) {}
+
+
 	public Book(String book) {
+
 		this.book = book;
 		this.paragraphs = new ArrayList<Paragraph>();
 	}
@@ -36,6 +46,12 @@ public class Book {
 	public float punctuationDensity() {
 		return (float) this.punctuations() / this.numSentences();
 	}
+
+//
+//	public String getAuthor() {
+//		return author;
+//	}
+
 
 	public void preprocess(Tokenizer tokenizer) {
 		for (String paragraph : tokenizer.paragraphs(book)) {
@@ -135,16 +151,44 @@ public class Book {
 	public ArrayList<String> topNWords(int n) {
 		Map<String, Integer> top = sortedWordFrequency();
 		ArrayList<String> topN = new ArrayList<String>();
-		int i = 0;
-		for (Entry<String, Integer> entry : top.entrySet()) {
-			if (i < n) {
-				topN.add(entry.getKey());
-				i++;
-			}
-		}
+
+		int i=0;
+		for (Entry<String, Integer> entry : top.entrySet())
+	    {
+	        if(i<n) {
+	        	topN.add(entry.getKey());
+	        	i++;
+	        }
+	    }
 
 		return topN;
 	}
+	
+//	public HashMap<String,ArrayList<String>> bigram()
+//	{
+//		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+//		ArrayList<String> temp = allWords();		
+//		for (int i=0;i<temp.size()-1;i++) {
+//			String s = temp.get(i);
+//			ArrayList<String> tempSet = new ArrayList<>();
+//			//HashMap<String,Integer> tempSet2 = new HashMap<>();
+//			if (map.containsKey(s)) {				
+//				tempSet = map.get(s);
+//			} 
+//			tempSet.add(temp.get(i+1));
+//	        map.put(s,tempSet);
+//		}		
+//
+//		int i = 0;
+//		for (Entry<String, Integer> entry : top.entrySet()) {
+//			if (i < n) {
+//				topN.add(entry.getKey());
+//				i++;
+//			}
+//		}
+//
+//		return topN;
+//	}
 
 	public ArrayList<Character> allLetters() {
 		ArrayList<Character> letters = new ArrayList<Character>();
@@ -209,26 +253,27 @@ public class Book {
 				tempSet.put(words.get(i + 1), 1);
 			map.put(s, tempSet);
 		}
+
 		return map;
 	}
 }
 
 class ValueComparator implements Comparator<String> {
-    HashMap<String, Integer> base;
+	HashMap<String, Integer> base;
 
-    public ValueComparator(HashMap<String, Integer> base) {
-        this.base = base;
-    }
+	public ValueComparator(HashMap<String, Integer> base) {
+		this.base = base;
+	}
 
-    // Note: this comparator imposes orderings that are inconsistent with
-    // equals.
-    public int compare(String a, String b) {
-        if (base.get(a) >= base.get(b)) {
-            return -1;
-        } else {
-            return 1;
-        } // returning 0 would merge keys
-    }
+	// Note: this comparator imposes orderings that are inconsistent with
+	// equals.
+	public int compare(String a, String b) {
+		if (base.get(a) >= base.get(b)) {
+			return -1;
+		} else {
+			return 1;
+		} // returning 0 would merge keys
+	}
 }
 
 class ValueComparatorchar implements Comparator<Character> {

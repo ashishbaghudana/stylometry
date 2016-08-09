@@ -11,7 +11,7 @@ import main.java.author.stylometry.structure.Book;
 public class GutenbergReader {
 
 	@SuppressWarnings("resource")
-	public String parseInput(String inputFile)
+	public  String parseInput(String inputFile)
 	{
 		String content = null;
 		try {
@@ -22,6 +22,5 @@ public class GutenbergReader {
 		}
 		return content;
 	}
-
-	
 }
+
