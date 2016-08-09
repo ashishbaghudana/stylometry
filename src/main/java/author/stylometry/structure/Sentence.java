@@ -66,10 +66,7 @@ public class Sentence {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Word w : words) {
-
-
 			topN.add(w.toString().toLowerCase());
-
 		}
 		return topN;
 	}
