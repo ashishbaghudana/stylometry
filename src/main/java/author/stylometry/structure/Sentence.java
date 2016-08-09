@@ -66,13 +66,7 @@ public class Sentence {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Word w : words) {
-<<<<<<< HEAD
-
 			topN.add(w.toString().toLowerCase());
-
-=======
-			topN.add(w.toString().toLowerCase());
->>>>>>> 63a93ca809f522328fee09c9cc30b9ca9b316fd0
 		}
 		return topN;
 	}
@@ -82,7 +76,7 @@ public class Sentence {
 		
 		for (Word w : words) {
 			System.out.println(w.allLetters());
-			for( Character c:w.allLetters())
+			for( Character c : w.allLetters())
 			{	System.out.println(c);
 			
 				letters.add(c);
