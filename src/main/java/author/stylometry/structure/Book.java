@@ -15,12 +15,14 @@ import java.util.TreeMap;
 
 public class Book {
 	private String book;
-	private String author;
 	private ArrayList<Paragraph> paragraphs;
 
+<<<<<<< HEAD
 	public Book(String book, String author) {}
 
 
+=======
+>>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
 	public Book(String book) {
 
 		this.book = book;
@@ -47,6 +49,7 @@ public class Book {
 		return (float) this.punctuations() / this.numSentences();
 	}
 
+<<<<<<< HEAD
 
 	public String getAuthor() {
 		return author;
@@ -54,6 +57,8 @@ public class Book {
 
 
 	
+=======
+>>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
 	public void preprocess(Tokenizer tokenizer) {
 		for (String paragraph : tokenizer.paragraphs(book)) {
 			Paragraph p = new Paragraph(paragraph);
@@ -140,20 +145,19 @@ public class Book {
 		}
 		return frequency;
 	}
-	
-	public TreeMap<String, Integer> sortedWordFrequency()
-	{
+
+	public TreeMap<String, Integer> sortedWordFrequency() {
 		HashMap<String, Integer> map = wordFrequency();
 		ValueComparator bvc = new ValueComparator(map);
-        TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(bvc);
-        sorted.putAll(map);
-        return sorted;
+		TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(bvc);
+		sorted.putAll(map);
+		return sorted;
 	}
-	
-	public ArrayList<String> topNWords(int n) 
-	{
-		Map<String,Integer> top = sortedWordFrequency();
+
+	public ArrayList<String> topNWords(int n) {
+		Map<String, Integer> top = sortedWordFrequency();
 		ArrayList<String> topN = new ArrayList<String>();
+<<<<<<< HEAD
 		int i=0;
 		for (Entry<String, Integer> entry : top.entrySet())
 	    {
@@ -180,6 +184,82 @@ public class Book {
 			tempSet.add(temp.get(i+1));
 	        map.put(s,tempSet);
 		}		
+=======
+		int i = 0;
+		for (Entry<String, Integer> entry : top.entrySet()) {
+			if (i < n) {
+				topN.add(entry.getKey());
+				i++;
+			}
+		}
+
+		return topN;
+	}
+
+	public ArrayList<Character> allLetters() {
+		ArrayList<Character> letters = new ArrayList<Character>();
+		for (Paragraph p : paragraphs) {
+			for (Character c : p.allLetters()) {
+				letters.add(c);
+			}
+
+		}
+		return letters;
+	}
+
+	public HashMap<Character, Integer> letterFrequency() {
+		ArrayList<Character> temp = allLetters();
+		HashMap<Character, Integer> frequency = new HashMap<Character, Integer>();
+		for (Character c : temp) {
+			if (frequency.containsKey(c)) {
+				frequency.put(c, frequency.get(c) + 1);
+			} else {
+				frequency.put(c, 1);
+			}
+		}
+		return frequency;
+	}
+
+
+
+	public TreeMap<Character, Integer> sortedLetterFrequency() {
+		HashMap<Character, Integer> map = letterFrequency();
+		ValueComparatorchar bvc = new ValueComparatorchar(map);
+		TreeMap<Character, Integer> sorted = new TreeMap<Character, Integer>(bvc);
+		sorted.putAll(map);
+		return sorted;
+	}
+
+	public ArrayList<Character> topNLetters(int n) {
+		Map<Character, Integer> top = sortedLetterFrequency();
+		ArrayList<Character> topN = new ArrayList<Character>();
+		int i = 0;
+		for (Entry<Character, Integer> entry : top.entrySet()) {
+			if (i < n) {
+				topN.add(entry.getKey());
+				i++;
+			}
+		}
+
+		return topN;
+	}
+
+	public HashMap<String, HashMap<String, Integer>> bigram() {
+		HashMap<String, HashMap<String, Integer>> map = new HashMap<String, HashMap<String, Integer>>();
+		ArrayList<String> words = allWords();
+		for (int i = 0; i < words.size() - 1; i++) {
+			String s = words.get(i);
+			HashMap<String, Integer> tempSet = new HashMap<>();
+			if (map.containsKey(s)) {
+				tempSet = map.get(s);
+			}
+			if (tempSet.containsKey(words.get(i + 1)))
+				tempSet.put(words.get(i+1), tempSet.get(words.get(i+1)) + 1);
+			else
+				tempSet.put(words.get(i + 1), 1);
+			map.put(s, tempSet);
+		}
+>>>>>>> a840bc6813198b8dc221382676ec8245b31cc964
 		return map;
 	}
 }
@@ -201,3 +281,22 @@ class ValueComparator implements Comparator<String> {
 		} // returning 0 would merge keys
 	}
 }
+
+class ValueComparatorchar implements Comparator<Character> {
+    HashMap<Character, Integer> base;
+
+    public ValueComparatorchar(HashMap<Character, Integer> base) {
+        this.base = base;
+    }
+
+    // Note: this comparator imposes orderings that are inconsistent with
+    // equals.
+    public int compare(Character a, Character b) {
+        if (base.get(a) >= base.get(b)) {
+            return -1;
+        } else {
+            return 1;
+        } // returning 0 would merge keys
+    }
+}
+
