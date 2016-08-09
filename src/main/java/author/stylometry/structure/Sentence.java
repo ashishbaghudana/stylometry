@@ -35,7 +35,7 @@ public class Sentence {
 	public ArrayList<Word> getWords() {
 		return words;
 	}
-	
+
 	public void preprocess(Tokenizer tokenizer) {
 		for (String word : tokenizer.words(sentence)) {
 			Word w = new Word(word);
@@ -66,8 +66,30 @@ public class Sentence {
 	public ArrayList<String> topNwords() {
 		ArrayList<String> topN = new ArrayList<String>();
 		for (Word w : words) {
+<<<<<<< HEAD
+
 			topN.add(w.toString().toLowerCase());
+
+=======
+			topN.add(w.toString().toLowerCase());
+>>>>>>> 63a93ca809f522328fee09c9cc30b9ca9b316fd0
 		}
 		return topN;
+	}
+	
+	public ArrayList<Character> allLetters() {
+		ArrayList<Character> letters = new ArrayList<Character>();
+		
+		for (Word w : words) {
+			System.out.println(w.allLetters());
+			for( Character c:w.allLetters())
+			{	System.out.println(c);
+			
+				letters.add(c);
+			}
+			
+		}
+		System.out.println(words.size());
+		return letters;
 	}
 }

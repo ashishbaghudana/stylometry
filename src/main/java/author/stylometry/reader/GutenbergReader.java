@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import main.java.author.stylometry.preprocess.Tokenizer;
+import main.java.author.stylometry.structure.Book;
+
+
 public class GutenbergReader {
 
 	@SuppressWarnings("resource")
@@ -18,4 +22,6 @@ public class GutenbergReader {
 		}
 		return content;
 	}
+
+	
 }

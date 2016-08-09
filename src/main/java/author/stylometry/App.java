@@ -4,6 +4,8 @@ import main.java.author.stylometry.preprocess.Tokenizer;
 import main.java.author.stylometry.reader.GutenbergReader;
 import main.java.author.stylometry.structure.Book;
 import main.java.author.stylometry.structure.Collection;
+import main.java.author.stylometry.structure.Sentence;
+import main.java.author.stylometry.structure.Word;
 
 /**
  * Hello world!
@@ -14,14 +16,16 @@ public class App
     public static void main (String[] args) {
     	GutenbergReader reader = new GutenbergReader();
     	Tokenizer tokenizer = new Tokenizer("en-sent.bin", "en-token.bin");
-    	
         Collection shakespeare = new Collection("Shakespeare");
         shakespeare.add(new Book(reader.parseInput("books/romeojuliet.txt")));
         shakespeare.add(new Book(reader.parseInput("books/juliuscaesar.txt")));
         shakespeare.add(new Book(reader.parseInput("books/hamlet.txt")));
         shakespeare.add(new Book(reader.parseInput("books/macbeth.txt")));
+     
+        
         
         shakespeare.preprocess(tokenizer);
+        
         shakespeare.calculateMetrics();
         
         Collection somerset = new Collection("Maugham");
